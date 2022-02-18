@@ -22,3 +22,29 @@ public:
         return c;
     }
 };
+//xor method
+class Solution {
+public:
+    int countConsistentStrings(string allowed, vector<string>& words) {
+     int a=0;
+        for(auto i:words)
+        {
+            if(fun(allowed,i))a++;
+        }
+        return a;
+    }
+    bool fun(string allowed, string str)
+    {
+        int a1=0,wt=0;
+        for(auto c:allowed)
+        {
+            a1|=1<<(c-'a');
+        }
+        wt=a1;
+        for(auto c:str)
+        {
+            wt|=1<<(c-'a');
+        }
+        return (a1^wt)==0;
+    }
+};
