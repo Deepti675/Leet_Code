@@ -7,6 +7,7 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+//time complexity O(n) and Space Complexity O(n).
 class Solution {
 public:
     bool hasCycle(ListNode *h) {
