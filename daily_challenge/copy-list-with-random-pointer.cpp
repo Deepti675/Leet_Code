@@ -1,4 +1,3 @@
-//https://leetcode.com/problems/copy-list-with-random-pointer/
 /*
 // Definition for a Node.
 class Node {
@@ -18,31 +17,21 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-       if(!head)
-           return NULL;
-        unordered_map<Node*,Node*>Stor;
-        Node *dummy,*temp1,*temp2;
-        temp1=new Node(0);
-        dummy=temp1;
-        temp2=head;
-        while(temp2)
+     map<Node*,Node*>hash_M;
+        Node* dummy=head;
+        while(dummy!=NULL)
         {
-            temp1->next=new Node(temp2->val);
-            temp1=temp1->next;
-            Stor[temp2]=temp1;
-            temp2=temp2->next;
+            Node* copy=new Node(dummy->val);
+            hash_M[dummy]=copy;
+            dummy=dummy->next;
         }
-        temp2=head;
-        temp1=dummy->next;
-        while(temp2)
+        dummy=head;
+        while(dummy!=NULL)
         {
-            if(temp2->random)
-                temp1->random=Stor[temp2->random];
-            else
-                temp2->random=NULL;
-            temp1=temp1->next;
-            temp2=temp2->next;
+            hash_M[dummy]->next=hash_M[dummy->next];
+            hash_M[dummy]->random=hash_M[dummy->random];
+            dummy=dummy->next;
         }
-        return dummy->next;
+        return hash_M[head];
     }
 };
