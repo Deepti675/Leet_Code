@@ -27,3 +27,24 @@ public:
         return maxi;
     }
 };
+
+
+//2nd method
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        vector<int>v(256,-1);
+        int max_len=0;
+        int val=-1;
+        for(int i=0;i<s.size();i++)
+        {
+            if(v[s[i]]>val)
+            {
+                val=v[s[i]];
+            }
+            v[s[i]]=i;
+            max_len=max(max_len,i-val);
+        }
+        return max_len;
+    }
+};
